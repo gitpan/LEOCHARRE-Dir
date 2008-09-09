@@ -5,6 +5,7 @@ use strict;
 
 my $x = 0;
 sub ok_part {
+   no warnings;
    printf STDERR "\n\n===\nPART %s %s\n\n", $x++, (+shift);
    return 1;
 }
@@ -31,8 +32,6 @@ ok_part();
 
 
 
-
-
 for ( 0 .. 1 ) {
    `touch '$dir/f$_'`;
    ok -f "$dir/f$_",'made file';
@@ -42,10 +41,8 @@ for ( 0 .. 1 ) {
 my @l = ls($dir);
 ok( scalar @l, "have [@l]");
 
-my @l = lsa($dir);
+@l = lsa($dir);
 ok( scalar @l, "lsa have [@l]");
-
-
 
 @l = lsf($dir);
 ok( scalar @l, "lsf have [@l]");
@@ -80,12 +77,6 @@ ok scalar @r, "lsfr have rels [@r]";
 
 @r = lsdr($dir);
 ok scalar @r, "lsdr have rels [@r]";
-
-
-
-
-
-
 
 
 

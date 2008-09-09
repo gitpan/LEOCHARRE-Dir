@@ -5,8 +5,7 @@ use Exporter;
 @ISA = qw/Exporter/;
 @EXPORT_OK = qw(reqdir ls lsa lsf lsfa lsd lsda lsr lsfr lsdr);
 %EXPORT_TAGS = ( all => \@EXPORT_OK );
-$VERSION = sprintf "%d.%02d", q$Revision: 1.2 $ =~ /(\d+)/g;
-
+$VERSION = sprintf "%d.%02d", q$Revision: 1.3 $ =~ /(\d+)/g;
 
 *reqdir = \&__require_dir;
 *ls     = \&__ls;
@@ -27,18 +26,16 @@ sub __require_dir {
 }
 
 sub __ls {
-   my $abs = shift;
-   $abs or die('missing argument');
-   opendir(DIR, $abs) or die("cant open dir '$abs', $!");
+   $_[0] or die('missing argument');
+   opendir(DIR, $_[0]) or die("cant open dir '$_[0]', $!");
    my @ls = grep { !/^\.+$/ } readdir DIR;
    closedir DIR;
    return @ls;
 }
 sub __lsa {
-   my $abs = shift;
-   $abs or die('missing argument');
+   $_[0] or die('missing argument');
    require Cwd;
-   my $abs = Cwd::abs_path($abs) or die;
+   my $abs = Cwd::abs_path($_[0]) or die;
    my @ls = map { "$abs/$_" } __ls($abs);
    return @ls;
 }
@@ -59,11 +56,12 @@ sub __lsdr { return ( map { __rel2docroot($_) }    __lsda( $_[0]) ) }
 
 sub __rel2docroot {
    $ENV{DOCUMENT_ROOT} or die("ENV DOCUMENT ROOT not set");
+   
    my $p = shift;
    $p or die('missing argument');
 
    $p=~s/^$ENV{DOCUMENT_ROOT}// or return;
-   return $p;   
+   return $p;
 }
 
 
@@ -83,19 +81,19 @@ LEOCHARRE::Dir - subs for dirs
 
    use LEOCHARRE::Dir ':all';
 
-   my $dir = reqdir("./dirhere");
-
-   my @ls = ls($dir);
-
-   my @files = lsf($dir);
-
-   my @dirs = lsd($dir);
-
-   my @abs_dirs = lsda($dir);
-
-   my @abs_files = lsfa($dir);
-
-   my @abs_all = lsa($dir);
+   my $dir        = reqdir("./make_sure_dir_is_here");
+   
+   my @ls         = ls($dir);
+   
+   my @files      = lsf($dir);
+   
+   my @dirs       = lsd($dir);
+   
+   my @abs_dirs   = lsda($dir);
+   
+   my @abs_files  = lsfa($dir);
+   
+   my @abs_all    = lsa($dir);
 
 =head1 DESCRIPTION
 
@@ -122,7 +120,6 @@ Returns list array with all files.
 =head2 lsfa()
 
 Same as lsf(), but paths are absolute.
-
 
 =head2 lsd()
 
@@ -159,6 +156,9 @@ Argument is path to dir.
 Requires that the dir exist, if not there, creates.
 Returns abs path to dir requested.
 
+=head1 BUGS
+
+Please contact the AUTHOR.
 
 =head1 SEE ALSO
 

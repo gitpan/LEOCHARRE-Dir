@@ -1,3 +1,7 @@
+2008-09-08 19:47  cvs
+
+	* lib/LEOCHARRE/Dir.pm, t/00.t: fixed some warnings
+
 2008-07-15 14:10  cvs
 
 	* lib/LEOCHARRE/Dir.pm: cleaned up documentation
