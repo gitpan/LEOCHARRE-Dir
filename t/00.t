@@ -13,7 +13,7 @@ sub ok_part {
 ok_part();
 
 my $_d = './t/testdir';
-system( "rm -rf $_d");
+system( "rm -rf '$_d'") if -d $_d;
 
 ok ( ! -d $_d );
 

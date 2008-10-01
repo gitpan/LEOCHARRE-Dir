@@ -1,12 +1,13 @@
 --- #YAML:1.0
 name:                LEOCHARRE-Dir
-version:             1.03
+version:             1.05
 abstract:            ~
 license:             ~
 author:              ~
 generated_by:        ExtUtils::MakeMaker version 6.44
 distribution_type:   module
 requires:     
+    Carp:                          1
     Cwd:                           3
     Exporter:                      5
     Test::Simple:                  0

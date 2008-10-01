@@ -5,8 +5,9 @@ WriteMakefile(
    VERSION_FROM => 'lib/LEOCHARRE/Dir.pm',
 
 
-   # gen /usr/bin/pmused by Tue Jul 15 15:05:32 EDT 2008 
+   # gen /usr/bin/pmused by Wed Oct  1 17:58:58 EDT 2008 
    PREREQ_PM => {
+      'Carp'                              => '1',
       'Cwd'                               => '3',
       'Exporter'                          => '5',
       'Test::Simple'                      => '0',
