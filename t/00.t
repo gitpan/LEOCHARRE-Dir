@@ -46,17 +46,20 @@ ok( scalar @l, "lsa have [@l]");
 
 @l = lsf($dir);
 ok( scalar @l, "lsf have [@l]");
+for (@l ){ -f "$dir/$_" or die("lsf() NOT FILE $_"); }
 
 @l = lsd($dir);
 ok( scalar @l, "lsd have [@l]");
+for (@l ){ -d "$dir/$_" or die("lsd() NOT DIR $_"); }
 
 
 @l = lsda($dir);
 ok( scalar @l, "lsda have [@l]");
+for (@l ){ -d "$_" or die("lsda() NOT DIR $_"); }
 
 @l = lsfa($dir);
 ok( scalar @l, "lsfa have [@l]");
-
+for (@l ){ -f "$_" or die("NOT FILE $_"); }
 
 ok_part('failtest');
 

@@ -6,7 +6,7 @@ use Exporter;
 @ISA = qw/Exporter/;
 @EXPORT_OK = qw(reqdir ls lsa lsf lsfa lsd lsda lsr lsfr lsdr);
 %EXPORT_TAGS = ( all => \@EXPORT_OK );
-$VERSION = sprintf "%d.%02d", q$Revision: 1.5 $ =~ /(\d+)/g;
+$VERSION = sprintf "%d.%02d", q$Revision: 1.6 $ =~ /(\d+)/g;
 
 
 *reqdir = \&__require_dir;
@@ -45,8 +45,8 @@ sub __lsa {
 
 # no leading path
 sub __lsf  { return ( grep { -f "$_[0]/$_" }       __ls(   $_[0]) ) }
-#sub __lsd  { return ( grep { -d "$_[0]/$_" }       __ls(   $_[0]) ) }
-*__lsd = \&__lsreaddir;
+sub __lsd  { return ( grep { -d "$_[0]/$_" }       __ls(   $_[0]) ) }
+#*__lsd = \&__lsreaddir; this is stupidly broken
 
 # absolute path
 sub __lsfa { return ( grep   -f,                   __lsa(  $_[0]) ) } 
@@ -68,13 +68,13 @@ sub __rel2docroot {
 }
 
 
-sub __lsreaddir{
-   $_[0] or croak('missing dir arg');
-   opendir(DIR, $_[0]) or croak("Can't open $_[0], $!");
-   my @lsd = grep { !/^\.+$/ } readdir(DIR);
-   closedir DIR;
-   return @lsd;
-}
+#sub __lsreaddir{
+#   $_[0] or croak('missing dir arg');
+#   opendir(DIR, $_[0]) or croak("Can't open $_[0], $!");
+#   my @lsd = grep { !/^\.+$/ } readdir(DIR);
+#   closedir DIR;
+#   return @lsd;
+#}
    
 
 1;
