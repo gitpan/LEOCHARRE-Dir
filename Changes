@@ -1,3 +1,9 @@
+2009-04-22 10:35  cvs
+
+	* MANIFEST, lib/LEOCHARRE/Dir.pm, lib/LEOCHARRE/Dir.pod, t/00.t:
+	  moved documentation to .pod file altered test to accomodate lack
+	  of 'touch'
+
 2008-12-08 16:03  cvs
 
 	* lib/LEOCHARRE/Dir.pm, t/00.t: there was a major bug, lsd() was

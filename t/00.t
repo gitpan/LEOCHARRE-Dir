@@ -2,6 +2,7 @@ use Test::Simple 'no_plan';
 use lib './lib';
 use LEOCHARRE::Dir ':all';
 use strict;
+use File::Path 'rmtree';
 
 my $x = 0;
 sub ok_part {
@@ -13,7 +14,9 @@ sub ok_part {
 ok_part();
 
 my $_d = './t/testdir';
-system( "rm -rf '$_d'") if -d $_d;
+
+rmtree($_d) if -d $_d;
+
 
 ok ( ! -d $_d );
 
@@ -33,7 +36,8 @@ ok_part();
 
 
 for ( 0 .. 1 ) {
-   `touch '$dir/f$_'`;
+   touch("$dir/f$_");
+   #`touch '$dir/f$_'`;
    ok -f "$dir/f$_",'made file';
 }
 
@@ -87,6 +91,14 @@ ok scalar @r, "lsdr have rels [@r]";
 
 
 
-
-system( "rm -rf $_d");
+rmtree($_d);
+#ystem( "rm -rf $_d");
 exit;
+
+
+sub touch {
+   my $where = shift;
+   $where or die;
+   open(FILE,'>',$where) or warn("Cant open for writing '$where', $!") and return;
+   close FILE;
+}
