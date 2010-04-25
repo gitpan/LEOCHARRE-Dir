@@ -1,11 +1,21 @@
 use ExtUtils::MakeMaker;
 
 WriteMakefile(
-   NAME => 'LEOCHARRE::Dir',
-   VERSION_FROM => 'lib/LEOCHARRE/Dir.pm',
-   
 
-   # gen /usr/bin/pmused by Wed Apr 22 10:35:47 EDT 2009 
+   NAME => 'LEOCHARRE::Dir',
+   
+   VERSION_FROM   => 'lib/LEOCHARRE/Dir.pm',
+   
+   ABSTRACT_FROM  => 'lib/LEOCHARRE/Dir.pod',      
+   
+   LICENSE        => 'perl',   
+   
+   AUTHOR         => 'Leo Charre leocharre at cpan dot org',   
+   
+   EXE_FILES => [],
+
+   
+   # gen /usr/bin/pmused by Sun Apr 25 16:38:46 EDT 2010 
    PREREQ_PM => {
       'Carp'                              => '1',
       'Cwd'                               => '3',
@@ -14,12 +24,6 @@ WriteMakefile(
       'Test::Simple'                      => '0',
    },
 
-   
-   LICENSE => 'perl',
-   
-   
-   
-   EXE_FILES => [],
 );
 
 

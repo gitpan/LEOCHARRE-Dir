@@ -6,7 +6,7 @@ use Exporter;
 @ISA = qw/Exporter/;
 @EXPORT_OK = qw(reqdir ls lsa lsf lsfa lsd lsda lsr lsfr lsdr);
 %EXPORT_TAGS = ( all => \@EXPORT_OK );
-$VERSION = sprintf "%d.%02d", q$Revision: 1.7 $ =~ /(\d+)/g;
+$VERSION = sprintf "%d.%02d", q$Revision: 1.8 $ =~ /(\d+)/g;
 
 *reqdir = \&__require_dir;
 *ls     = \&__ls;
@@ -18,6 +18,7 @@ $VERSION = sprintf "%d.%02d", q$Revision: 1.7 $ =~ /(\d+)/g;
 *lsr    = \&__lsr;
 *lsfr   = \&__lsfr;
 *lsdr   = \&__lsdr;
+
 
 sub __require_dir {
    require Cwd;
